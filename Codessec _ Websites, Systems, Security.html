@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Codessec: website development, website pentesting, server and computer maintenance, software installation and user support.">
+<title>Codessec</title>
+<link rel="icon" type="image/svg+xml" href="./codessec-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f4f5;--surface:#fff;--text:#111114;--muted:#55555c;--line:#d9d9de;--red:#e31b23;--red-d:#a50f15;--ink:#050506;--ink-2:#14090a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0b0d;--surface:#141416;--text:#f3f3f4;--muted:#a3a3aa;--line:#2a2a2e}}
+:root[data-theme="dark"]{--bg:#0b0b0d;--surface:#141416;--text:#f3f3f4;--muted:#a3a3aa;--line:#2a2a2e}
+html{scroll-padding-top:calc(76px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.65 Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:#050506}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.12;margin:0;letter-spacing:-.01em}
+.red{color:var(--red)}
+.dark{background:radial-gradient(120% 90% at 85% 0%,#8f0d12 0%,var(--ink-2) 45%,var(--ink) 100%);color:#f5f5f6}
+section{padding:88px 0}
+.head{max-width:660px;margin-bottom:44px}
+.head h2,.split h2,.contact h2{font-size:clamp(28px,4vw,42px);font-weight:700}
+.head p{color:var(--muted);margin:14px 0 0}
+.dark .head p{color:#cfcfd3}
+.rule{height:3px;width:110px;background:linear-gradient(90deg,var(--red),transparent);margin:18px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;font-weight:700;font-size:15px;padding:14px 26px;border-radius:999px;border:0;cursor:pointer;font-family:inherit;transition:background .2s}
+.btn:hover{background:var(--red-d)}
+.btn.ghost{background:transparent;border:1.5px solid #5a5a60;color:#f5f5f6}
+.btn.ghost:hover{border-color:var(--red)}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(5,5,6,.94);backdrop-filter:blur(8px);border-bottom:1px solid #2a1214;color:#f5f5f6}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.06em}
+.brand svg{width:30px;height:32px}.brand b{color:var(--red)}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:500}
+nav a{padding:6px 0;border-bottom:2px solid transparent}
+nav a:hover,nav a.on{color:var(--red);border-color:var(--red)}
+.nav .btn{padding:10px 20px;font-size:14px}
+.burger{display:none;background:none;border:1.5px solid #4a4a50;border-radius:10px;width:44px;height:44px;cursor:pointer;color:#fff;padding:0}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:#fff;margin:auto;position:relative;transition:transform .2s,background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:96px 0 104px}
+.hero::after{content:"";position:absolute;top:-10%;right:-6%;width:170px;height:130%;background:#000;transform:rotate(-24deg);opacity:.55;border-left:26px solid var(--red)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(34px,5.2vw,62px);font-weight:700;max-width:640px}
+.hero h1 .red{font-weight:800}
+.role{margin:18px 0 0;color:#cfcfd3;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+.lead{max-width:540px;color:#d6d6da;font-size:18px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.tag{font-family:"Dancing Script",cursive,serif;font-size:28px;color:#e8e8ea;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.tag i{width:7px;height:7px;border-radius:50%;background:var(--red)}
+.hero .tag{margin-top:32px}
+.logo{display:flex;flex-direction:column;align-items:center;text-align:center}
+.logo svg{width:min(250px,60vw);height:auto;filter:drop-shadow(0 20px 40px rgba(227,27,35,.35))}
+.logo .word{font-weight:800;font-size:clamp(32px,5vw,54px);letter-spacing:.08em;margin-top:10px}
+.logo .sub{font-size:11px;letter-spacing:.28em;color:#d6d6da}
+
+/* trust strip */
+.strip{background:var(--surface);border-bottom:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.strip div{padding:22px 16px;border-right:1px solid var(--line);font-size:14px;color:var(--muted)}
+.strip div:last-child{border:0}
+.strip b{display:block;color:var(--text);font-size:15px}
+
+/* about */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.profile{aspect-ratio:1;border-radius:18px;background:radial-gradient(100% 100% at 80% 0%,#8f0d12,var(--ink));display:grid;place-items:center;position:relative;overflow:hidden;color:#fff;text-align:center;padding:24px}
+.profile svg{width:44%;height:auto}
+.profile b{display:block;font-size:22px;margin-top:10px}
+.profile span{font-size:13px;color:#d6d6da;letter-spacing:.1em;text-transform:uppercase}
+.about p{color:var(--muted);margin:0 0 16px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chips span{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:600}
+
+/* services */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;border-top:3px solid var(--red)}
+.ic{width:46px;height:46px;border-radius:50%;background:var(--ink);border:2px solid var(--red);display:grid;place-items:center;margin-bottom:18px;flex:none}
+.ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:19px;font-weight:700}
+.card p{margin:10px 0 0;color:var(--muted);font-size:15px}
+.card ul{margin:14px 0 0;padding:0;list-style:none;font-size:14px;color:var(--muted);display:grid;gap:6px}
+.card li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-right:10px}
+
+/* security split + process */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split p{color:#cfcfd3}
+.steps{list-style:none;margin:0;padding:0;border-left:2px solid #4a1b1e}
+.steps li{padding:0 0 26px 28px;position:relative}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--red)}
+.steps b{display:block;font-size:18px}
+.steps span{color:#b9b9bf;font-size:15px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.flow div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;position:relative}
+.flow div::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;margin-bottom:16px}
+.flow b{display:block;font-size:18px;margin-bottom:6px}
+.flow span{color:var(--muted);font-size:14.5px}
+
+/* audiences / why */
+.aud{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.aud div{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--surface)}
+.aud b{display:block;margin-bottom:6px}
+.aud span{font-size:14px;color:var(--muted)}
+.why{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.why div{padding:28px;border-right:1px solid var(--line)}
+.why div:last-child{border:0}
+.why b{display:block;font-size:17px;margin-bottom:8px}
+.why span{color:var(--muted);font-size:14.5px}
+
+/* faq */
+.faq{max-width:820px;display:grid;gap:12px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 22px}
+summary{cursor:pointer;font-weight:700;padding:18px 28px 18px 0;list-style:none;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:24px;color:var(--red);font-weight:500}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 18px;color:var(--muted);font-size:15px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.ways{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:16px}
+.ways a{display:flex;align-items:center;gap:14px;font-weight:600;font-size:17px;word-break:break-word}
+.ways .ic{background:var(--red);border:0;margin:0;width:44px;height:44px}
+.social{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.social a{width:44px;height:44px;border-radius:50%;border:1.5px solid #5a5a60;display:grid;place-items:center;transition:background .2s,border-color .2s}
+.social a:hover{background:var(--red);border-color:var(--red)}
+.social svg{width:20px;height:20px}
+form{background:rgba(255,255,255,.06);border:1px solid #3a1a1d;border-radius:16px;padding:28px;display:grid;gap:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{font-size:14px;font-weight:600;display:grid;gap:6px}
+input,select,textarea{font:inherit;color:#fff;background:#0c0c0e;border:1px solid #3b3b41;border-radius:10px;padding:12px 14px;width:100%}
+input:focus-visible,select:focus-visible,textarea:focus-visible{border-color:var(--red)}
+textarea{min-height:110px;resize:vertical}
+.acts{display:flex;flex-wrap:wrap;gap:12px}
+.note{font-size:13px;color:#a9a9b0;margin:0}
+
+/* footer + floats */
+footer{background:var(--ink);color:#a9a9b0;padding:48px 0 30px;font-size:14px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+footer h4{color:#fff;margin:0 0 12px;font-size:15px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer a:hover{color:var(--red)}
+footer .social{margin-top:16px}
+.copy{border-top:1px solid #222;margin-top:34px;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;display:grid;gap:10px}
+.fab a,.fab button{width:52px;height:52px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.fab .wa{background:#25a244}
+.fab .up{background:var(--ink);border:1.5px solid var(--red);opacity:0;pointer-events:none;transition:opacity .2s}
+.fab .up.show{opacity:1;pointer-events:auto}
+.fab svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* responsive */
+@media (max-width:980px){
+ .grid{grid-template-columns:1fr 1fr}
+ .aud{grid-template-columns:1fr 1fr}
+ .flow,.why{grid-template-columns:1fr 1fr}
+ .why div{border-bottom:1px solid var(--line)}
+}
+@media (max-width:860px){
+ section{padding:64px 0}
+ .burger{display:block}
+ .nav>.btn{display:none}
+ nav{position:fixed;left:0;right:0;top:calc(68px + env(safe-area-inset-top,0px));background:#050506;border-bottom:1px solid #2a1214;max-height:0;overflow:hidden;transition:max-height .25s}
+ nav.open{max-height:360px}
+ nav ul{flex-direction:column;gap:0;padding:8px 24px 18px}
+ nav a{display:block;padding:14px 0;border-bottom:1px solid #1d1d20}
+ .hero{padding:56px 0 72px}.hero::after{display:none}
+ .hero .wrap,.split,.contact,.about,.fgrid{grid-template-columns:1fr}
+ .logo{order:-1;align-items:flex-start;text-align:left}.logo svg{width:140px}
+ .strip .wrap{grid-template-columns:1fr 1fr}.strip div{border-bottom:1px solid var(--line)}
+ .profile{max-width:320px}
+}
+@media (max-width:560px){
+ .wrap{padding:0 18px}
+ .grid,.aud,.flow,.why,.two{grid-template-columns:1fr}
+ .why div{border-right:0}
+ .cta .btn,.acts .btn{width:100%}
+ .tag{font-size:24px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs><linearGradient id="lr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff1d1d"/><stop offset="1" stop-color="#e10b14"/></linearGradient><linearGradient id="lw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c4c4c8"/></linearGradient><symbol id="logo" viewBox="90 55 610 660">
+  <path d="M108 213 245 140 318 203 232 265 236 472 113 415z" fill="url(#lr)"/><path d="M125 455 238 478 255 508 395 598 460 657 388 702 285 660 180 570 140 500z" fill="url(#lr)"/>
+  <path d="M272 127 402 68 478 102 350 196 320 196 285 160z" fill="url(#lw)"/><path d="M448 124 490 106 688 184 590 247 572 225z" fill="url(#lw)"/>
+  <path d="M540 470 667 469 480 647 425 627 392 603 392 580 430 560z" fill="url(#lw)"/>
+  
+ </symbol></defs>
+</svg>
+
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#top" aria-label="Codessec home"><svg><use href="#logo"/></svg>CODES<b>SEC</b></a>
+  <nav id="menu" aria-label="Main"><ul>
+   <li><a href="#about">About</a></li>
+   <li><a href="#services">Services</a></li>
+   <li><a href="#security">Security</a></li>
+   <li><a href="#process">Process</a></li>
+   <li><a href="#faq">FAQ</a></li>
+   <li><a href="#contact">Contact</a></li>
+  </ul></nav>
+  <a class="btn" href="tel:+254799963705">Call now</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+ </div>
+</header>
+
+<main id="top">
+<div class="dark hero">
+ <div class="wrap">
+  <div>
+   <h1>We build, <span class="red">secure</span> and support your business online</h1>
+   <p class="role">IT solutions &amp; cybersecurity company</p>
+   <div class="rule" style="width:150px"></div>
+   <p class="lead">We design websites, keep your systems running and test your defences before an attacker does. One team for websites, systems and security.</p>
+   <div class="cta">
+    <a class="btn" href="#contact">Request a quote</a>
+    <a class="btn ghost" href="#services">See what we offer</a>
+   </div>
+   <div class="tag"><span>Secure</span><i></i><span>Build</span><i></i><span>Support</span></div>
+  </div>
+  <div class="logo">
+   <svg viewBox="0 0 120 130" role="img" aria-label="Codessec shield logo"><use href="#logo"/></svg>
+   <div class="word">CODES<span class="red">SEC</span></div>
+   <div class="sub">WEBSITES &nbsp;<span class="red">•</span>&nbsp; SYSTEMS &nbsp;<span class="red">•</span>&nbsp; SECURITY</div>
+  </div>
+ </div>
+</div>
+
+<div class="strip"><div class="wrap">
+ <div><b>Websites</b>Design and development</div>
+ <div><b>Systems</b>Servers, PCs and software</div>
+ <div><b>Security</b>Pentesting and hardening</div>
+ <div><b>Support</b>Help when you need it</div>
+</div></div>
+
+<section id="about">
+ <div class="wrap about">
+  <div class="profile"><div><svg viewBox="0 0 120 130"><use href="#logo"/></svg><b>Codessec</b><span>Websites • Systems • Security</span></div></div>
+  <div>
+   <div class="head" style="margin-bottom:20px"><h2>One team for your whole IT setup</h2><div class="rule"></div></div>
+   <p>Codessec is an IT solutions and cybersecurity company. We give individuals and businesses a single trusted partner for everything technical: the website customers see, the systems behind it and the security that protects both.</p>
+   <p>Instead of chasing a web developer, a network technician and a security tester separately, you work with one team that understands how the pieces fit together and stays reachable after the job is finished.</p>
+   <div class="chips"><span>Web development</span><span>Penetration testing</span><span>Linux &amp; Windows servers</span><span>Hardware &amp; software</span><span>Technical support</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="services" style="background:var(--surface);border-block:1px solid var(--line)">
+ <div class="wrap">
+  <div class="head"><h2>What we offer</h2><div class="rule"></div><p>Seven services that cover your website, your machines and your security.</p></div>
+  <div class="grid">
+   <article class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div><h3>Website development</h3><p>Fast, mobile-friendly websites and web systems that represent your business and bring in customers.</p><ul><li>Business and portfolio sites</li><li>Online forms and booking</li><li>Custom web systems</li></ul></article>
+   <article class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Website pentesting</h3><p>Authorised security testing that finds weak points in your site and gives you a clear list of fixes.</p><ul><li>Vulnerability assessment</li><li>Written risk-ranked report</li><li>Fix support and re-test</li></ul></article>
+   <article class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg></div><h3>Server maintenance</h3><p>Updates, monitoring, backups and hardening so your servers stay available and protected.</p><ul><li>Patching and updates</li><li>Backup set-up</li><li>Security hardening</li></ul></article>
+   <article class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></div><h3>Computer maintenance</h3><p>Repairs, clean-ups and upgrades that keep office and home computers running smoothly.</p><ul><li>Virus and malware removal</li><li>Slow-PC tune-ups</li><li>Hardware upgrades</li></ul></article>
+   <article class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><h3>Software installations</h3><p>Installation and set-up of operating systems and business software, configured properly the first time.</p><ul><li>Windows and Linux set-up</li><li>Office and business tools</li><li>Antivirus and security tools</li></ul></article>
+   <article class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 5.5 11 4v7H3zM13 3.7 21 2v9h-8zM3 13h8v7l-8-1.5zM13 13h8v9l-8-1.7z"/></svg></div><h3>Windows bypass</h3><p>Access recovery for locked Windows computers you own, such as forgotten passwords and lost logins. Ownership is confirmed first.</p><ul><li>Forgotten password recovery</li><li>Locked account access</li><li>Data kept safe</li></ul></article>
+   <article class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/></svg></div><h3>User support</h3><p>Friendly help for you and your team whenever something stops working.</p><ul><li>Phone and WhatsApp help</li><li>Staff guidance</li><li>Troubleshooting</li></ul></article>
+  </div>
+ </div>
+</section>
+
+<div class="dark" id="security">
+ <section>
+  <div class="wrap split">
+   <div>
+    <h2>Find the gaps before attackers do</h2>
+    <div class="rule"></div>
+    <p>A website pentest shows you how your site would hold up against a real attack. You get a plain-language report and help fixing every issue it finds. All testing is done only with your written permission.</p>
+    <div class="cta"><a class="btn" href="#contact">Book a security test</a></div>
+   </div>
+   <ol class="steps">
+    <li><b>Scope</b><span>We agree what is tested and get your written permission.</span></li>
+    <li><b>Test</b><span>We probe your site and server the way an attacker would.</span></li>
+    <li><b>Report</b><span>You receive findings ranked by risk, each with a fix.</span></li>
+    <li><b>Secure</b><span>We help apply the fixes, then re-test to confirm they work.</span></li>
+   </ol>
+  </div>
+ </section>
+</div>
+
+<section id="process">
+ <div class="wrap">
+  <div class="head"><h2>How we work together</h2><div class="rule"></div><p>The same simple path for every project, big or small.</p></div>
+  <div class="flow">
+   <div><b>Tell us what you need</b><span>Call, message on WhatsApp or use the form below.</span></div>
+   <div><b>Get a plan and quote</b><span>You receive a clear scope, timeline and price before any work starts.</span></div>
+   <div><b>We do the work</b><span>You get regular updates until the job is complete.</span></div>
+   <div><b>Handover and support</b><span>We walk you through the result and stay available for help.</span></div>
+  </div>
+ </div>
+</section>
+
+<section style="background:var(--surface);border-block:1px solid var(--line)">
+ <div class="wrap">
+  <div class="head"><h2>Who we help</h2><div class="rule"></div></div>
+  <div class="aud">
+   <div><b>Small businesses</b><span>Websites and IT that grow with you.</span></div>
+   <div><b>Shops and offices</b><span>Reliable computers and fewer interruptions.</span></div>
+   <div><b>Schools and institutions</b><span>Managed systems and user support.</span></div>
+   <div><b>Startups</b><span>A secure web presence from day one.</span></div>
+   <div><b>Individuals</b><span>Repairs, set-up and account recovery.</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="why">
+ <div class="wrap">
+  <div class="head"><h2>Your digital solutions partner</h2><div class="rule"></div></div>
+  <div class="why">
+   <div><b>One point of contact</b><span>Build, secure and support with the same team.</span></div>
+   <div><b>Security first</b><span>Every site and system is set up with protection in mind.</span></div>
+   <div><b>Plain language</b><span>Clear explanations, no jargon, no surprises.</span></div>
+   <div><b>Ongoing support</b><span>Help is a call away after the job is done.</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+ <div class="wrap">
+  <div class="head"><h2>Frequently asked questions</h2><div class="rule"></div></div>
+  <div class="faq">
+   <details><summary>What is a website pentest?</summary><p>It is a controlled, authorised attempt to break into your website to find security weaknesses before real attackers do. You receive a report listing what was found and how to fix it.</p></details>
+   <details><summary>Do I need to give permission for security testing?</summary><p>Yes. We only test systems you own or are authorised to test, and we agree the scope in writing first.</p></details>
+   <details><summary>What does Windows bypass mean?</summary><p>It means regaining access to a Windows computer you own when you are locked out. We confirm ownership before starting, and we work to keep your files intact.</p></details>
+   <details><summary>How much does a project cost?</summary><p>It depends on the work involved. Send us the details and we’ll give you a clear quote before anything starts.</p></details>
+   <details><summary>Can you support me after my website is live?</summary><p>Yes. We offer maintenance, updates and user support so your site and systems stay secure and working.</p></details>
+   <details><summary>How do I get started?</summary><p>Call +254799963705, message us on WhatsApp or fill in the form below. We’ll reply with next steps.</p></details>
+  </div>
+ </div>
+</section>
+
+<div class="dark" id="contact">
+ <section>
+  <div class="wrap contact">
+   <div>
+    <h2>Let’s talk about your project</h2>
+    <div class="rule"></div>
+    <p class="lead">Tell us what you need and we’ll reply with a plan and a quote.</p>
+    <ul class="ways">
+     <li><a href="tel:+254799963705"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>+254799963705</a></li>
+     <li><a data-email href="#"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span data-email-text></span></a></li>
+     <li><a href="https://codessec.com"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>Codessec.com</a></li>
+    </ul>
+    <div class="social" data-social aria-label="Social networks"></div>
+   </div>
+   <form id="f">
+    <div class="two">
+     <label>Your name<input name="name" required autocomplete="name"></label>
+     <label>Phone or email<input name="contact" required autocomplete="tel"></label>
+    </div>
+    <label>What do you need?
+     <select name="svc">
+      <option>Website development</option><option>Website pentesting</option><option>Server maintenance</option>
+      <option>Computer maintenance</option><option>Software installations</option><option>Windows access recovery</option><option>User support</option><option>Something else</option>
+     </select></label>
+    <label>Message<textarea name="msg" required></textarea></label>
+    <div class="acts">
+     <button class="btn" type="submit" data-via="wa">Send on WhatsApp</button>
+     <button class="btn ghost" type="submit" data-via="mail">Send by email</button>
+    </div>
+    <p class="note" id="status" role="status">Your message opens in WhatsApp or your email app, ready to send.</p>
+   </form>
+  </div>
+ </section>
+</div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fgrid">
+   <div>
+    <a class="brand" href="#top" style="color:#fff"><svg><use href="#logo"/></svg>CODES<b>SEC</b></a>
+    <p style="max-width:340px">IT solutions and cybersecurity: websites, systems and security from one trusted partner.</p>
+    <div class="social" data-social></div>
+   </div>
+   <div><h4>Services</h4><ul><li><a href="#services">Website development</a></li><li><a href="#services">Website pentesting</a></li><li><a href="#services">Server maintenance</a></li><li><a href="#services">Computer maintenance</a></li><li><a href="#services">User support</a></li></ul></div>
+   <div><h4>Contact</h4><ul><li><a href="tel:+254799963705">+254799963705</a></li><li><a data-email href="#"><span data-email-text></span></a></li><li><a href="https://codessec.com">Codessec.com</a></li></ul></div>
+  </div>
+  <div class="copy"><span>© <span id="y">2026</span> Codessec. All rights reserved.</span><div class="tag" style="font-size:22px"><span>Secure</span><i></i><span>Build</span><i></i><span>Support</span></div></div>
+ </div>
+</footer>
+
+<div class="fab">
+ <button class="up" id="up" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg></button>
+ <a class="wa" id="wafab" href="https://wa.me/254799963705" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.600z"/><path d="M9 8.500c0 3.500 3 6.500 6.500 6.500l1-1.500-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2z"/></svg></a>
+</div>
+
+<script>
+/* ===== EDIT HERE: contact and social details ===== */
+var CONTACT={phone:"254799963705",email:"info@codessec.com"};
+var SOCIALS=[
+ {name:"WhatsApp",url:"https://wa.me/254799963705",type:"stroke",d:"M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.600zM9 8.500c0 3.500 3 6.500 6.500 6.500l1-1.500-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2z"},
+ {name:"Facebook",url:"https://facebook.com/codessec",type:"fill",d:"M14 8V6.500c0-.8.2-1.200 1.300-1.200H17V2h-2.600C11.600 2 10 3.600 10 6.200V8H8v3.300h2V22h4V11.300h2.700L17 8z"},
+ {name:"LinkedIn",url:"https://linkedin.com/company/codessec",type:"fill",d:"M4.500 9h3.700v12H4.500zM6.300 3a2.100 2.100 0 1 1 0 4.200 2.100 2.100 0 0 1 0-4.200zM10.500 9H14v1.700c.5-1 1.800-2 3.700-2 3.700 0 4.300 2.400 4.300 5.600V21h-3.700v-5.900c0-1.400 0-3.200-2-3.200s-2.200 1.500-2.200 3.100V21h-3.700z"},
+ {name:"X",url:"https://x.com/codessec",type:"fill",d:"M17.800 3h3.100l-6.800 7.800L22 21h-6.200l-4.900-6.400L5.300 21H2.200l7.300-8.300L2 3h6.400l4.400 5.800zM16.700 19h1.700L7.400 4.800H5.600z"},
+ {name:"Instagram",url:"https://instagram.com/codessec",type:"stroke",d:"M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM17.500 6.500h.01"}
+];
+/* ================================================== */
+var NS="http://www.w3.org/2000/svg";
+document.querySelectorAll("[data-social]").forEach(function(box){
+ SOCIALS.forEach(function(s){
+  if(!s.url)return;
+  var a=document.createElement("a");a.href=s.url;a.target="_blank";a.rel="noopener noreferrer";a.setAttribute("aria-label",s.name);a.title=s.name;
+  var v=document.createElementNS(NS,"svg");v.setAttribute("viewBox","0 0 24 24");
+  var p=document.createElementNS(NS,"path");p.setAttribute("d",s.d);
+  if(s.type==="fill"){p.setAttribute("fill","#fff")}else{p.setAttribute("fill","none");p.setAttribute("stroke","#fff");p.setAttribute("stroke-width","1.8");p.setAttribute("stroke-linecap","round");p.setAttribute("stroke-linejoin","round")}
+  v.appendChild(p);a.appendChild(v);box.appendChild(a);
+ });
+});
+document.querySelectorAll("[data-email]").forEach(function(a){a.href="mailto:"+CONTACT.email});
+document.querySelectorAll("[data-email-text]").forEach(function(s){s.textContent=CONTACT.email});
+document.getElementById("y").textContent=new Date().getFullYear();
+
+/* mobile menu */
+var burger=document.getElementById("burger"),menu=document.getElementById("menu");
+function closeMenu(){menu.classList.remove("open");burger.setAttribute("aria-expanded","false")}
+burger.addEventListener("click",function(){var o=menu.classList.toggle("open");burger.setAttribute("aria-expanded",o)});
+menu.addEventListener("click",function(e){if(e.target.tagName==="A")closeMenu()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeMenu()});
+
+/* active nav link */
+var links={};menu.querySelectorAll("a").forEach(function(a){links[a.getAttribute("href").slice(1)]=a});
+if("IntersectionObserver"in window){
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.toggle("on",k===e.target.id)})}})},{rootMargin:"-45% 0px -50% 0px"});
+ Object.keys(links).forEach(function(k){var el=document.getElementById(k);if(el)io.observe(el)});
+}
+
+/* back to top */
+var up=document.getElementById("up");
+window.addEventListener("scroll",function(){up.classList.toggle("show",window.scrollY>600)},{passive:true});
+up.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
+
+/* contact form */
+var form=document.getElementById("f"),via="wa";
+form.querySelectorAll("button[type=submit]").forEach(function(b){b.addEventListener("click",function(){via=b.getAttribute("data-via")})});
+form.addEventListener("submit",function(e){
+ e.preventDefault();
+ var d=new FormData(form);
+ var t="Hello Codessec, I’m "+d.get("name")+" ("+d.get("contact")+").\nService: "+d.get("svc")+"\n\n"+d.get("msg");
+ var st=document.getElementById("status");
+ if(via==="mail"){window.location.href="mailto:"+CONTACT.email+"?subject="+encodeURIComponent("Enquiry: "+d.get("svc"))+"&body="+encodeURIComponent(t);st.textContent="Opening your email app. If nothing opens, write to "+CONTACT.email+"."}
+ else{window.open("https://wa.me/"+CONTACT.phone+"?text="+encodeURIComponent(t),"_blank","noopener");st.textContent="Opening WhatsApp. If nothing opens, call +254799963705."}
+});
+</script>
+</body>
+</html>
