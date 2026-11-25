@@ -9,7 +9,6 @@
    <stop offset="1" stop-color="#c4c4c8"/>
   </linearGradient>
  </defs>
- <rect x="90" y="55" width="610" height="660" rx="96" fill="#050506"/>
  <path d="M108 213 245 140 318 203 232 265 236 472 113 415z" fill="url(#red)"/>
  <path d="M125 455 238 478 255 508 395 598 460 657 388 702 285 660 180 570 140 500z" fill="url(#red)"/>
  <path d="M272 127 402 68 478 102 350 196 320 196 285 160z" fill="url(#white)"/>
